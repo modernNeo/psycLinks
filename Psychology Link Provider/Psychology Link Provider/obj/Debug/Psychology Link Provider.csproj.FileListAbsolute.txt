@@ -1,0 +1,9 @@
+C:\Users\Jason Manshad\documents\visual studio 2015\Projects\Psychology Link Provider\Psychology Link Provider\bin\Debug\Psychology Link Provider.exe.config
+C:\Users\Jason Manshad\documents\visual studio 2015\Projects\Psychology Link Provider\Psychology Link Provider\bin\Debug\Psychology Link Provider.exe
+C:\Users\Jason Manshad\documents\visual studio 2015\Projects\Psychology Link Provider\Psychology Link Provider\bin\Debug\Psychology Link Provider.pdb
+C:\Users\Jason Manshad\documents\visual studio 2015\Projects\Psychology Link Provider\Psychology Link Provider\obj\Debug\Psychology_Link_Provider.Form1.resources
+C:\Users\Jason Manshad\documents\visual studio 2015\Projects\Psychology Link Provider\Psychology Link Provider\obj\Debug\Psychology_Link_Provider.Properties.Resources.resources
+C:\Users\Jason Manshad\documents\visual studio 2015\Projects\Psychology Link Provider\Psychology Link Provider\obj\Debug\Psychology Link Provider.csproj.GenerateResource.Cache
+C:\Users\Jason Manshad\documents\visual studio 2015\Projects\Psychology Link Provider\Psychology Link Provider\obj\Debug\Psychology Link Provider.exe
+C:\Users\Jason Manshad\documents\visual studio 2015\Projects\Psychology Link Provider\Psychology Link Provider\obj\Debug\Psychology Link Provider.pdb
+C:\Users\Jason Manshad\Documents\Visual Studio 2015\Projects\Psychology Link Provider\Psychology Link Provider\obj\Debug\Psychology Link Provider.csprojResolveAssemblyReference.cache
