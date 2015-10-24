@@ -14,36 +14,47 @@ namespace Psychology_Link_Provider
         int buttonsClicked = 0;
         int Def, MSCS;
         int currentPage = 0;
+
+        /*
+         * Purpose: to load the URL array with the needed links
+         */
         private void Form1_Load(object sender, EventArgs e)
         {
             //for confidentality concerns, all links redirect to the git repository to prevent any abuse of the links used for actual study
-            URL[0] = "https://github.com/modernNeo/psycLinks"; 
-            URL[1] = "https://github.com/modernNeo/psycLinks"; 
-            URL[2] = "https://github.com/modernNeo/psycLinks";
-            URL[3] = "https://github.com/modernNeo/psycLinks"; 
-            URL[4] = "https://github.com/modernNeo/psycLinks";
-            URL[5] = "https://github.com/modernNeo/psycLinks";
+            URL[0] = "https://github.com/modernNeo/psycLinks.git";
+            URL[1] = "https://github.com/modernNeo/psycLinks.git";
+            URL[2] = "https://github.com/modernNeo/psycLinks.git";
+            URL[3] = "https://github.com/modernNeo/psycLinks.git";
+            URL[4] = "https://github.com/modernNeo/psycLinks.git";
+            URL[5] = "https://github.com/modernNeo/psycLinks.git";
+            activateLinkButtons(false);
         }
 
+        /*
+         * Purpose: to take the user to the screen with the buttons that contain the links after error checkin their
+         * inputs
+         */
         private void buttonSubmit_Click(object sender, EventArgs e)
         {
             bool passed = true;
             labelErrors.Text = "";
             int garbage;
             labelID.Text = txtBoxID.Text;
-            if (!int.TryParse(txtBoxMSCS.Text, out MSCS) || MSCS < 1 || MSCS > 2)
+            if (!int.TryParse(txtBoxMSCS.Text, out MSCS) || MSCS < 1 || MSCS > 2)//makes sure that tbe MSCS number
+            //is either 1 or 2
             {
                 passed = false;
                 labelErrors.Text = "Incorrect Input for MSCS\n";
 
             }
 
-            if (!int.TryParse(txtBoxDef.Text, out Def) || Def < 1 || Def > 2)
+            if (!int.TryParse(txtBoxDef.Text, out Def) || Def < 1 || Def > 2)//makes sure that the Def number is 
+            //either 1 or 2
             {
                 passed = false;
                 labelErrors.Text += "Incorrect Input for Def";
             }
-            if (txtBoxID.Text.Length != 17)
+            if (txtBoxID.Text.Length != 17)//makes sure that the length of the Lab ID is 17
             {
                 passed = false;
                 labelErrors.Text += "Incorrect Input for Lab ID";
@@ -52,9 +63,11 @@ namespace Psychology_Link_Provider
             }
             else
             {
-                for (int i = 0; i < 17; i++)
+                for (int i = 0; i < 17; i++)//checks each character in the Lab ID to make sure if confirms to the 
+                //format that is required
                 {
-                    if ((i < 4 && i > -1) || (i == 5 || i == 6) || (i == 8 || i == 9) || (i > 10))
+                    if ((i < 4 && i > -1) || (i == 5 || i == 6) || (i == 8 || i == 9) || (i > 10))//ensures that the 
+                    //characters that have to be numbers are numbers
                     {
                         if (!int.TryParse(txtBoxID.Text[i].ToString(), out garbage))
                         {
@@ -64,7 +77,7 @@ namespace Psychology_Link_Provider
 
                         }
                     }
-                    else
+                    else//ensure that the characters that have to be periods are periods
                     {
                         if (txtBoxID.Text[i].ToString() != ".")
                         {
@@ -76,7 +89,7 @@ namespace Psychology_Link_Provider
                     }
                 }
             }
-            if (passed == true)
+            if (passed == true)//make sure that the user can only proceed if the testing all passed
             {
                 if (MSCS == 1)
                 {
@@ -88,23 +101,7 @@ namespace Psychology_Link_Provider
                     buttonSecondLink.Text = "Second Link - What is SC?";
                     buttonThirdLink.Text = "Third Link - MSCS";
                 }
-                txtBoxID.Visible = false;
-                txtBoxDef.Visible = false;
-                txtBoxMSCS.Visible = false;
-                btnSubmit.Visible = false;
-                labelDefinition.Visible = false;
-                labelMSCS.Visible = false;
-                labelLabID.Visible = false;
-
-                buttonFirstLink.Visible = true;
-                buttonSecondLink.Visible = true;
-                buttonThirdLink.Visible = true;
-                buttonFourthLink.Visible = true;
-                buttonFifthLink.Visible = true;
-                labelID.Visible = true;
-                doneButton.Visible = true;
-                doneButton.Enabled = false;
-                buttonDebriefing.Visible = true;
+                activateLinkButtons(true);
             }
         }
 
@@ -113,63 +110,36 @@ namespace Psychology_Link_Provider
             buttonsClicked++;
             System.Diagnostics.Process.Start(URL[currentPage]);
             buttonFirstLink.Enabled = false;
-            if (buttonsClicked == 6)
-            {
-                doneButton.Enabled = true;
-            }
+            if (buttonsClicked == 6) doneButton.Enabled = true;
         }
 
         private void buttonSecondLink_Click(object sender, EventArgs e)
         {
             buttonsClicked++;
-            if (MSCS == 1)
-            {
-                currentPage = 3;
-            }
+            if (MSCS == 1) currentPage = 3;
             else
             {
-                if (Def == 1)
-                {
-                    currentPage = 1;
-                }
-                else
-                {
-                    currentPage = 2;
-                }
+                if (Def == 1) currentPage = 1;
+                else currentPage = 2;
             }
             System.Diagnostics.Process.Start(URL[currentPage]);
             buttonSecondLink.Enabled = false;
-            if (buttonsClicked == 6)
-            {
-                doneButton.Enabled = true;
-            }
+            if (buttonsClicked == 6) doneButton.Enabled = true;
         }
 
         private void buttonThirdLink_Click(object sender, EventArgs e)
         {
             buttonsClicked++;
-            if (MSCS == 2)
-            {
-                currentPage = 3;
-            }
+            if (MSCS == 2) currentPage = 3;
             else
             {
-                if (Def == 1)
-                {
-                    currentPage = 1;
-                }
-                else
-                {
-                    currentPage = 2;
-                }
+                if (Def == 1) currentPage = 1;
+                else currentPage = 2;
             }
             System.Diagnostics.Process.Start(URL[currentPage]);
-            currentPage=4;
+            currentPage = 4;
             buttonThirdLink.Enabled = false;
-            if (buttonsClicked == 6)
-            {
-                doneButton.Enabled = true;
-            }
+            if (buttonsClicked == 6) doneButton.Enabled = true;
         }
 
         private void buttonFourthLink_Click(object sender, EventArgs e)
@@ -178,10 +148,7 @@ namespace Psychology_Link_Provider
             System.Diagnostics.Process.Start(URL[currentPage]);
             currentPage++;
             buttonFourthLink.Enabled = false;
-            if (buttonsClicked == 6)
-            {
-                doneButton.Enabled = true;
-            }
+            if (buttonsClicked == 6) doneButton.Enabled = true;
         }
 
         private void buttonFifthLink_Click(object sender, EventArgs e)
@@ -190,20 +157,14 @@ namespace Psychology_Link_Provider
             System.Diagnostics.Process.Start(URL[currentPage]);
             currentPage++;
             buttonFifthLink.Enabled = false;
-            if (buttonsClicked == 6)
-            {
-                doneButton.Enabled = true;
-            }
+            if (buttonsClicked == 6) doneButton.Enabled = true;
         }
 
         private void buttonDebriefing_Click(object sender, EventArgs e)
         {
             buttonsClicked++;
             buttonDebriefing.Enabled = false;
-            if (buttonsClicked == 6)
-            {
-                doneButton.Enabled = true;
-            }
+            if (buttonsClicked == 6) doneButton.Enabled = true;
 
         }
 
@@ -234,27 +195,27 @@ namespace Psychology_Link_Provider
             string appendText = labelID.Text + ",X," + Def + "," + MSCS + ",X,X,X" + Environment.NewLine;
             File.AppendAllText(filePath + fileName, appendText);
             labelErrors.Text = "Output saved to: " + filePath + fileName;
+
             txtBoxID.Text = "";
             txtBoxMSCS.Text = "";
             txtBoxDef.Text = "";
-            txtBoxID.Visible = true;
-            txtBoxDef.Visible = true;
-            txtBoxMSCS.Visible = true;
-            btnSubmit.Visible = true;
-            labelDefinition.Visible = true;
-            labelMSCS.Visible = true;
-            labelLabID.Visible = true;
-
-            buttonDebriefing.Visible = false;
-            buttonFirstLink.Visible = false;
-            buttonSecondLink.Visible = false;
-            buttonThirdLink.Visible = false;
-            buttonFourthLink.Visible = false;
-            buttonFifthLink.Visible = false;
-            labelID.Visible = false;
-            doneButton.Visible = false;
-
+            activateLinkButtons(false);
+            currentPage = 0;
         }
 
+        private void activateLinkButtons(bool activate)
+        {
+            
+            inputBox.Enabled = !activate;
+            outputBox.Enabled = activate;
+
+            buttonFirstLink.Enabled = activate;
+            buttonSecondLink.Enabled = activate;
+            buttonThirdLink.Enabled = activate;
+            buttonFourthLink.Enabled = activate;
+            buttonFifthLink.Enabled = activate;
+            buttonDebriefing.Enabled = activate;
+            
+        }
     }
 }
